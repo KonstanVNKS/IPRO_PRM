@@ -1,5 +1,10 @@
 package TP8;
 import seqint.*;
+/*
+* this class is using a custom made class SeqInt having the same
+* attributes as a python list without all the methods
+* so basically we're manupilating pseudo python lists
+*/
 
 public class Tp8_1 {
     public static void main(String[] args) {
