@@ -185,20 +185,19 @@ public class Tp8_1 {
         boolean contains = false;
         if (!isEmpty(l)) {
             int tmp = li.next();
-            while (li.hasNext()) {
+            while (li.hasNext() && !contains) {
                 int act = li.next();
                 if (act == tmp)
                     contains = true;
                 tmp = act;
             }
-        } else
-            throw new RuntimeException("the list is empty");
+        }
         return contains;
     }
 
     public static int lastMaxPos(SeqInt l){
         int trgt = max(l);
-        int pos =0 ; int cnt =0;
+        int pos =-1 ; int cnt =0;
         SeqIntIterator li = l.iterator();
         if (!isEmpty(l)) {
             while (li.hasNext()) {
@@ -207,27 +206,25 @@ public class Tp8_1 {
                 if (act == trgt)
                     pos = cnt;
             }
-        } else
-            throw new RuntimeException("the list is empty");
+        }
         return pos;
     }
 
     public static int firstMaxPos(SeqInt l) {
         int firstPos = 1;
-        int cnt = 0;
+        int cnt = 1;
         int trgt = max(l);
         SeqIntIterator li = l.iterator();
-        if (!isEmpty(l)) {
+        if (li.hasNext()) {
             int a = li.next();
             while (li.hasNext() && a != trgt) {
                 cnt++;
                 a = li.next();
             }
-            firstPos += cnt;
-            if (cnt == len(l) - 1 && firstPos == len(l))
-                firstPos = -1;
-        } else
-            throw new RuntimeException("the list is empty");
+            firstPos = cnt;
+            //if (cnt == len(l) - 1 && firstPos == len(l))
+            //    firstPos = -1;
+        }
         return firstPos;
     }
 
@@ -278,20 +275,18 @@ public class Tp8_1 {
 
     public static SeqInt TwoMax(SeqInt l){
         SeqIntIterator li = l.iterator();
-        SeqIntIterator lj = l.iterator();
         int max1 =0;
         int max2 = 0;
-        int tmp = lj.next();
-        while(li.hasNext()){
-            int act = li.next();
-            if(act >= max1)
-                max1=act;
-
-        }
-        while(lj.hasNext()){
-            int act = lj.next();
-            if(act < max1 && act>= tmp)
-                max2 = act;
+        if(li.hasNext()) {
+            int tmp = 0;
+            while (li.hasNext()) {
+                int act = li.next();
+                if (act >= max1)
+                    max1 = act;
+                if (tmp < act && act<max1)
+                    max2 = act;
+                tmp = act;
+            }
         }
         SeqInt res = new SeqInt(max1,max2);
         return res;
