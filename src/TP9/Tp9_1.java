@@ -12,8 +12,7 @@ public class Tp9_1 {
         System.out.println("le nombre de plateau de taille 3 de la sequence "+s1+" est de : " + nbPlateauxl3(s1));
         System.out.println("le nombre de bloc de parité de taille 3 de la sequence "+s1+" est de : " + plateauParitéL(s1, 3));
         System.out.println(s0+" "+nbPlatHMax(s0));
-        System.out.println(s0+" "+plateauHMaxL(s0));
-        System.out.println(s1+" "+plateauHMaxL(s1));
+
     }
 
     public static int plateau(SeqInt l){
@@ -220,7 +219,8 @@ public class Tp9_1 {
      *
      *
     * */
-    public static int plateauHMaxL(SeqInt l){
+
+    /*public static int plateauHMaxL(SeqInt l){
         int res =0;
         SeqIntIterator li = l.iterator();
         if(li.hasNext()) {
@@ -243,31 +243,5 @@ public class Tp9_1 {
             }
         }
         return res;
-    }
-    public static int plateauHMaxLdonne(SeqInt l, int lg){
-        int res =0;
-        SeqIntIterator li = l.iterator();
-        if(li.hasNext()) {
-            int act = li.next();
-            int max = act;
-            int lp = 1;
-            while(li.hasNext()) {
-                int prev = act;
-                act = li.next();
-                if (act == prev)
-                    lp++;
-                else
-                    lp =1;
-                if (act>max) {
-                    max = act;
-                    res = 0;
-                } else if (act == max && lp == lg) {
-                    res++;
-                }else (act==max && lp==lg+1){
-                    res--;
-                }
-            }
-        }
-        return res;
-    }
+    }*/
 }

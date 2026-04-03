@@ -2,6 +2,7 @@
   <library name="SeqInt">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/SeqInt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Array.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
