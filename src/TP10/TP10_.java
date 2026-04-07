@@ -6,21 +6,24 @@ import java.net.Inet4Address;
 public class TP10_ {
     public static void main(String[] args) {
         Array<Integer> t = new Array<>(1,2,3,4,5,6,7,8,9);
-        Array<Integer> t2 = new Array<>(1,2,3,1,4,5,6,6,6,6,6,6,7,8,9,8,5);
-        System.out.println("la somme de tous les elements de "+t+" est de :"+sum(t));
-        System.out.println("la moyenne de tous les elements de "+t+" est de :"+avg(t));
-        System.out.println(isIn(t,10));
-        System.out.println(isIn(t,5));
-        System.out.println(firstOccurence(t2,4));
-        System.out.println(lastOccurence(t2,5));
+        Array<Integer> t2 = new Array<>(1,2,3,1,1,4,5,6,7,8,9,8,5);
+        System.out.println(t2);
+        //System.out.println("la somme de tous les elements de "+t+" est de :"+sum(t));
+        //System.out.println("la moyenne de tous les elements de "+t+" est de :"+avg(t));
+        //System.out.println(isIn(t,10));
+        //System.out.println(isIn(t,5));
+        //System.out.println(firstOccurence(t2,4));
+        //System.out.println(lastOccurence(t2,5));
         //System.out.println(exchange(t, 2,5));
         //System.out.println(reverse(t));
         //System.out.println(cyclicalL(t), 1);
         //System.out.println(cyclicalR(t));
-        System.out.println(insert(t,55,4));
-        System.out.println(delete(t,4));
+        //System.out.println(insert(t,55,4));
+        //System.out.println(delete(t,4));
+        //System.out.println(t2);
+        System.out.println(deleteOccurence(t2,1));
         System.out.println(t2);
-        System.out.println(deleteOccurence(t2,6));
+//        System.out.println(set(t2));
     }
     public static int sum(Array<Integer> t){
         int sum = 0;
@@ -93,18 +96,15 @@ public class TP10_ {
     }
 
     public static Array<Integer> exchange(Array<Integer> t, int p1, int p2){
-        int val1 = t.get(p1);
-        int val2 = t.get(p2);
-        t.set(p1,val2);
-        t.set(p2,val1);
+        t.set(p1,t.get(p2));
+        t.set(p2,t.get(p1));
         return t;
     }
 
     public static Array<Integer> reverse(Array<Integer> t){
         int l = t.size()-1;
         for (int i = 0; i < t.size()/2; i++) {
-            exchange(t,i,l);
-            l--;
+            exchange(t,i,l--);
         }
         return t;
     }
@@ -146,12 +146,28 @@ public class TP10_ {
     }
 
     public static Array<Integer> deleteOccurence(Array<Integer> t, int val){
+        int cnt = 0;
         for (int i = 0; i < t.size(); i++) {
             if(t.get(i)==val){
-                delete(t,i);
-                deleteOccurence(t,val);
+                cyclicalL(t,i);
+                if(t.get(i)!=val)
+                    cnt--;
+                cnt++;
             }
         }
+        t.reduceTo(t.size()-cnt);
         return t;
     }
+
+    public static Array<Integer> set(Array<Integer> t){
+        int cnt = 0;
+        for (int i = 0; i < t.size(); i++) {
+            if(isIn2(t,t.get(i),i+1)){
+                cyclicalL(t,i);
+            }
+        }
+
+        return t;
+    }
+
 }

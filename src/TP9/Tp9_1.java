@@ -244,4 +244,38 @@ public class Tp9_1 {
         }
         return res;
     }*/
+
+    /*
+    * s   7 7 8 1 1 3 3 2 5 4
+    * res 0 0 0 0 0 1 1 1 2 2 if(e>prev && down)
+    *down f f f t t f f t f t if(e<prev) down = true; else-if(e>prec) down = false
+    *
+    *
+    * */
+
+    public static int nbdown(SeqInt s){
+        int res = 0;
+
+        SeqIntIterator li = s.iterator();
+        if(li.hasNext()){
+            int act = li.next();
+            boolean down = false;
+            while (li.hasNext()){
+                int prev =act;
+                act = li.next();
+                if(act>prev){
+                    if(down)
+                        ++res;
+                    down = false;
+                } else if (act<prev) {
+                    
+
+                }
+            }
+
+        }
+
+
+        return res;
+    }
 }
