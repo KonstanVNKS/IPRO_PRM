@@ -2,6 +2,7 @@ package TP10;
 import eu.epfc.prm.Array;
 
 import java.net.Inet4Address;
+import java.util.Objects;
 
 public class TP10_ {
     public static void main(String[] args) {
@@ -12,8 +13,8 @@ public class TP10_ {
 //        System.out.println("la moyenne de tous les elements de "+t+" est de :"+avg(t));
 //        System.out.println(isIn(t,10));
 //        System.out.println(isIn(t,5));
-//        System.out.println(firstOccurence(t2,4));
-//        System.out.println(lastOccurence(t2,5));
+//        System.out.println(firstOccurrence(t2,4));
+//        System.out.println(lastOccurrence(t2,5));
 //        System.out.println(exchange(t, 2,5));
 //        System.out.println(reverse(t));
 //        System.out.println(cyclicalL(t), 1);
@@ -21,9 +22,9 @@ public class TP10_ {
 //        System.out.println(insert(t,55,4));
 //        System.out.println(delete(t,4));
 //        System.out.println(t2);
-//        System.out.println(deleteOccurence(t2,5));
-        System.out.println(deleteOccurencev2(t2,5));
-//        System.out.println(set(t2));
+//        System.out.println(deleteOccurrence(t2,5));
+//        System.out.println(deleteOccurrencev2(t2,5));
+     System.out.println(set(t2));
     }
     public static int sum(Array<Integer> t){
         int sum = 0;
@@ -57,7 +58,7 @@ public class TP10_ {
         return res;
     }
 
-    public static int firstOccurence(Array<Integer> t, int trg){
+    public static int firstOccurrence(Array<Integer> t, int trg){
         int idx = 0;
         boolean found = false;
         if(t.isEmpty())
@@ -76,7 +77,7 @@ public class TP10_ {
         return idx;
     }
 
-    public static int lastOccurence(Array<Integer> t, int trg){
+    public static int lastOccurrence(Array<Integer> t, int trg){
         int idx = 0;
         boolean found = false;
         if(t.isEmpty())
@@ -145,7 +146,8 @@ public class TP10_ {
         return t;
     }
 
-    public static Array<Integer> deleteOccurence(Array<Integer> t, int val){
+    public static Array<Integer> deleteOccurrence(Array<Integer> t, int val){
+        // O(n) max == O(n²) quadratique
         int i = 0;
         while (i<t.size()){
             if(t.get(i) == val)
@@ -157,29 +159,38 @@ public class TP10_ {
         return t;
     }
 
-    public static Array<Integer> deleteOccurencev2(Array<Integer> t, int val){
-        int i = 0;
-        int c = 0;
-        while (i<t.size()){
-            if(t.get(i) == val) {
-                cyclicalL(t, i);
-                c++;
+    public static Array<Integer> deleteOccurrencev2(Array<Integer> t, int val, int pos){
+        // O(n) max = O(n) lineaire
+        if(pos>=0 && pos<t.size()){
+            int w = 0;
+            for (int r = 0; r < t.size(); r++) {
+                int v = t.get(r);
+                if (v != val) {
+                    t.set(w, v);
+                    ++w;
+                }
             }
-            else{
-                i++;
-            }
+            t.reduceTo(w);
         }
-        t.reduceTo(t.size()-c);
+
         return t;
     }
 
+    public static int nbOccurrence(Array<Integer> t, int val){
+        int c = 0;
+        for (int i = 0; i < t.size(); i++) {
+            if(t.get(i) == val)
+                c++;
+        }
+        return c;
+    }
 
     public static Array<Integer> set(Array<Integer> t){
-        int cnt = 0;
-        for (int i = 0; i < t.size(); i++) {
-            int idx = firstOccurence(t,t.get(i));
-            cyclicalL(t,idx);
-
+        for (int l = 0; l < t.size(); l++) {
+            for (int r = t.size()-1; r > 0; r--) {
+                if (Objects.equals(t.get(l), t.get(r)) && (nbOccurrence(t,t.get(r))>1))
+                    delete(t,r);
+            }
         }
         return t;
     }
