@@ -19,6 +19,7 @@ public class Tp11 {
         System.out.println(intToString(-108545494));
         int[] freq = tableOfOccurrences("je vais sur la lune et sur mars pour trouver de la biere pas chere");
         display(freq);
+        System.out.println(capsForStOfWord("je suis konstantinos et je mange"));
     }
 
     public static boolean isMin(char c){
@@ -104,9 +105,7 @@ public class Tp11 {
     public static  int compare(String ch1, String ch2){
         int len1 = ch1.length();
         int len2 = ch2.length();
-        int minlen = len1;
-        if(len1 > len2)
-            minlen=len2;
+        int minlen = Math.min(len1, len2);
         for (int i = 0; i < minlen; i++) {
             char c1=ch1.charAt(i);
             char c2=ch2.charAt(i);
@@ -148,9 +147,23 @@ public class Tp11 {
         for (int i = 0; i < freq.length; i++) {
             if(freq[i]>0){
                 char l = (char)('A'+i);
-                System.out.print(l +" : "+freq[i]+" , ");
+                System.out.print(l +" : "+freq[i]+" | ");
             }
         }
+        System.out.println(" ");
     }
+
+    public static String capsForStOfWord(String t){
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < t.length(); i++) {
+            if(i==0 ||( t.charAt(i-1)< 'A' && t.charAt(i-1)> 'Z') || (t.charAt(i-1)< 'a' && t.charAt(i-1)> 'z'))
+                res.append(getCaps(t.charAt(i)));
+            else
+                res.append(t.charAt(i));
+        }
+        return res.toString();
+    }
+
+    // if(i==0 || t.charAt(i-1)< 'A' && t.charAt(i-1)> 'Z' && t.charAt(i-1)< 'a' && t.charAt(i-1)> 'z')
 
 }
