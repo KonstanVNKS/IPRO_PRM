@@ -1,10 +1,9 @@
 package TP11;
-//import java.util.Scanner;
-
-import java.lang.reflect.Array;
+import java.util.Scanner;
 
 public class Tp11 {
     public static void main(String[] args) {
+
         System.out.println(isMin('z'));
         System.out.println(getCaps('z'));
         System.out.println(allmin("gqserhughusyeq"));
@@ -18,6 +17,8 @@ public class Tp11 {
         System.out.println(compare("bonbon", "bonbon"));
         System.out.println(intPositifToString(123));
         System.out.println(intToString(-108545494));
+        int[] freq = tableOfOccurrences("je vais sur la lune et sur mars pour trouver de la biere pas chere");
+        display(freq);
     }
 
     public static boolean isMin(char c){
@@ -130,5 +131,26 @@ public class Tp11 {
         return t.toString();
     }
 
-    public static Array tableOfOccurrence()
+    public static int[] tableOfOccurrences(String t){
+        int[] freq = new int[26];
+        for (int i = 0; i < t.length(); i++) {
+            char c = t.charAt(i);
+            if (Character.isLetter(c)){
+                c = getCaps(c);
+                int idx = c-'A';
+                freq[idx]++;
+            }
+        }
+        return freq;
+    }
+
+    public static void display(int[] freq){
+        for (int i = 0; i < freq.length; i++) {
+            if(freq[i]>0){
+                char l = (char)('A'+i);
+                System.out.print(l +" : "+freq[i]+" , ");
+            }
+        }
+    }
+
 }
