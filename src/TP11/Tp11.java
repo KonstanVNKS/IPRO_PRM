@@ -16,15 +16,18 @@ public class Tp11 {
         System.out.println(sontEgaux("moi","moi"));
         System.out.println(compare("bonbon", "bonbon"));
         System.out.println(intPositifToString(123));
-        System.out.println(intToString(-108545494));
+        System.out.println(intToString(-10));
         int[] freq = tableOfOccurrences("je vais sur la lune et sur mars pour trouver de la biere pas chere");
         display(freq);
         System.out.println(capsForStOfWord("je suis konstantinos et je mange"));
+        System.out.println(isLetter(' '));
     }
 
     public static boolean isMin(char c){
         return c >= 'a' && c<='z';
     }
+    public static boolean isMaj(char c){return c >= 'A' && c<='Z';}
+    public static boolean isLetter(char c){return isMin(c)||isMaj(c);}
 
     public static char getCaps(char c){
         char res = c;
@@ -117,17 +120,23 @@ public class Tp11 {
     }
 
     public static String intPositifToString(int s){
-        StringBuilder res = new StringBuilder();
+        String res = "";
         if(s<0)
-            throw new RuntimeException("l'entier doit etre positif");
-        res.append(s);
-        return res.toString();
+            throw new RuntimeException("nombre negatif");
+        do {
+            int lastcyffer = s%10;
+            char lastcyfferchar = (char)(lastcyffer + (int)'0');
+            res = lastcyfferchar + res;
+            s/=10;
+        }while(s>0);
+        return res;
     }
 
     public static String intToString(int s){
-        StringBuilder t = new StringBuilder();
-        t.append(s);
-        return t.toString();
+        if(s<0)
+            return "-"+intPositifToString(-s);
+        else
+            return intPositifToString(s);
     }
 
     public static int[] tableOfOccurrences(String t){
@@ -156,7 +165,7 @@ public class Tp11 {
     public static String capsForStOfWord(String t){
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < t.length(); i++) {
-            if(i==0 ||( t.charAt(i-1)< 'A' && t.charAt(i-1)> 'Z') || (t.charAt(i-1)< 'a' && t.charAt(i-1)> 'z'))
+            if(i==0 || !isLetter(t.charAt(i-1)))
                 res.append(getCaps(t.charAt(i)));
             else
                 res.append(t.charAt(i));
@@ -164,6 +173,5 @@ public class Tp11 {
         return res.toString();
     }
 
-    // if(i==0 || t.charAt(i-1)< 'A' && t.charAt(i-1)> 'Z' && t.charAt(i-1)< 'a' && t.charAt(i-1)> 'z')
 
 }
