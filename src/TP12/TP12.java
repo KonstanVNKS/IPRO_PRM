@@ -23,6 +23,7 @@ public class TP12 {
             Date d = new Date();
             Personne p = new Personne();
             saisie(p);
+            System.out.print("\n");
             table.add(p);
             n--;
         }
@@ -30,7 +31,7 @@ public class TP12 {
         for (int i = 0; i < table.size(); i++) {
             afficheP(table.get(i));
         }
-        System.out.println("_____________________________________________________________________________");
+        System.out.println("_____________________________________________________________________________ \n");
         getyounger(table);
 
     }
@@ -44,8 +45,7 @@ public class TP12 {
         d.annee = s.nextInt();
     }
     public static void afficheD(Date d){System.out.print(d.jour+"/"+d.mois+"/"+d.annee);}
-    public static void afficheP(Personne p){System.out.print(p.nom+ " "+p.prenom+" "); afficheD(p.ddn);
-        System.out.println(" ");}
+    public static void afficheP(Personne p){System.out.print(p.nom+ " "+p.prenom+" | "); afficheD(p.ddn);System.out.println(" ");}
 
     public static void saisie(Personne p){
         Scanner s = new Scanner(System.in);
@@ -95,6 +95,4 @@ public class TP12 {
        }
        afficheP(res);
    }
-
-
 }
