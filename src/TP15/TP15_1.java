@@ -129,10 +129,11 @@ public class TP15_1 {
     }
 
     public static boolean digitsPair(int n){
-        if(n==0)
+        if(n==0) {
             return false;
+        }
         int tocheck = n%10;
-        else if (tocheck%2==0) {
+        if (tocheck%2==0) {
             return true;
         }
         else
