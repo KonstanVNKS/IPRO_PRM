@@ -22,7 +22,7 @@ public class Tp13 {
         saisie(tab);
         System.out.println("La personne la plus jeune est : ");
         Personnev2 p = getYounger(tab);
-        System.out.println(p);
+        System.out.println(p + " " + p.getAge());
     }
 
     public static void affiche(Array<Personnev2> tab){
@@ -33,7 +33,7 @@ public class Tp13 {
 
     public static void saisie(Array<Personnev2> tab){
         Scanner s = new Scanner(System.in);
-        System.out.print("How many people do you nedd to add ? : ");
+        System.out.print("How many people do you need to add ? : ");
         int n = s.nextInt();
         for (int i = 0; i < n; i++) {
             Personnev2 per = new Personnev2();
