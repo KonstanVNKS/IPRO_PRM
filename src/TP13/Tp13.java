@@ -1,5 +1,6 @@
 package TP13;
 import TP13.Datev2.*;
+import TP13.Personnev2.*;
 import eu.epfc.prm.Array;
 import java.util.Scanner;
 
@@ -55,8 +56,4 @@ public class Tp13 {
         }
         return res;
     }
-
-
-
-
 }

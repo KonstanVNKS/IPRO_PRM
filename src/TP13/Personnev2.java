@@ -1,7 +1,8 @@
 package TP13;
 import java.time.LocalDate;
-import TP13.Datev2.*;
 import java.util.Scanner;
+import TP13.Datev2.*;
+
 
 public class Personnev2 {
     public String nom, prenom;

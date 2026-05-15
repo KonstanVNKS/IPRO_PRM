@@ -2,9 +2,7 @@ package TP13;
 import java.util.Scanner;
 
 public class Datev2 {
-
     public int jour, mois, annee;
-
 
     public Datev2(int day, int month, int year){
         this.jour = day;
