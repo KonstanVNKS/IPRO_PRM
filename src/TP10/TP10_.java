@@ -119,9 +119,9 @@ public class TP10_ {
     }
 
     public static Array<Integer> cyclicalR(Array<Integer> t, int s){
-        int l = t.get(t.size()-1);
+        var l = t.get(t.size()-1);
         for (int i = t.size()-1; i > s; i--) {
-            int tmp1 = t.get(i-1);
+            var tmp1 = t.get(i-1);
             t.set(i,tmp1);
         }
         t.set(0,l);

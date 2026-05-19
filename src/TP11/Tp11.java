@@ -1,7 +1,7 @@
 package TP11;
 import java.util.Scanner;
 
-public class Tp11 {
+public class    Tp11 {
     public static void main(String[] args) {
 
         System.out.println(isMin('z'));
