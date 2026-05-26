@@ -74,6 +74,13 @@ public class TP15_1 {
         return l.get(idx)+sumofelem(l, idx+1);
     }
 //    ex9 recherche dichothomique
+    public static boolean rDichotomique(Array<Integer> l , int val){
+        int di = 0;
+        int ds = l.size()-1;
+        return isIn(l,val,di,ds);
+    }
+
+
     public static boolean isIn(Array<Integer> l, int val, int di, int ds){
         int m = (di+ds)/2;
         if(di == ds)
@@ -86,9 +93,9 @@ public class TP15_1 {
             else
                 return isIn(l, val, m + 1, ds);
         }
-
     }
 //    ex10
+    public static int somme(SeqInt s){SeqIntIterator si = s.iterator(); return sum(si);}
     public static int sum(SeqIntIterator s){
         if(!s.hasNext())
             return 0;
@@ -139,24 +146,56 @@ public class TP15_1 {
         else
             return digitsPair(n/10);
     }
+// ex16
+    public static int binaryToDecimal(int bin){
+       double res = 0.0;
+       var exp = 0;
+       return reccall(bin, res, exp);
+    }
+
+    public static int reccall(int bin, double res, int exp){
+        if(bin == 0)
+            return (int)res;
+        return reccall(bin/10,res + (bin%10 * Math.pow(2,exp)), exp+1);
+    }
+
+    // ex17
+    public static int findMax(Array<Integer> t, int idx) {
+        if (idx == t.size() - 1) {
+            return t.get(idx);
+        }
+        return Math.max(t.get(idx), findMax(t, idx + 1));
+    }
+
+    // ex18
+    public static int nbCapsInString(String txt, int i){
+        if (i == txt.length())
+            return 0;
+        if(txt.charAt(i)>= (int)'A' && txt.charAt(i)<= (int)'Z')
+            return 1+nbCapsInString(txt, i+1);
+        return nbCapsInString(txt,i+1);
+    }
 
 
     public static void main(String[] args) {
-        int n = 10;
-        var l = new Array<Integer>(1,2,3,4,5,6,7,8,9);
-        SeqInt s = new SeqInt(1,2,2,3,3,5,5,5,5,5,8,4,9,7,7,7,7);
-        System.out.println(fact(n));
-        System.out.println(fibo(n));
-        System.out.println(exp(2,n));
-        System.out.println(exp2(2,n));
-        System.out.println(len(124843));
-        System.out.println(sumofdigitsof(123456789));
-        System.out.println(sum(l));
-        System.out.println(isIn(l,5,0,l.size()));
-        SeqIntIterator si = s.iterator();
-        System.out.println(sum(si));
-        System.out.println(nbPlateau(s));
-        System.out.println(timesOf2(20024));
-
+//        int n = 10;
+        var l = new Array<Integer>(1,2,3,4,15,5,6,7,8,9);
+        var txt = " Je Suis KonStantinoS";
+//        SeqInt s = new SeqInt(1,2,2,3,3,5,5,5,5,5,8,4,9,7,7,7,7);
+//        System.out.println(fact(n));
+//        System.out.println(fibo(n));
+//        System.out.println(exp(2,n));
+//        System.out.println(exp2(2,n));
+//        System.out.println(len(124843));
+//        System.out.println(sumofdigitsof(123456789));
+//        System.out.println(sum(l));
+//        System.out.println(isIn(l,5,0,l.size()));
+//        SeqIntIterator si = s.iterator();
+//        System.out.println(somme(s));
+//        System.out.println(nbPlateau(s));
+//        System.out.println(timesOf2(20024));
+        System.out.println(binaryToDecimal(10000000));
+        System.out.println(findMax(l,0));
+        System.out.println(nbCapsInString(txt,0));
     }
 }
