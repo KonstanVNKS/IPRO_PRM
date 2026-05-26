@@ -135,17 +135,16 @@ public class TP15_1 {
             return timesOf2(n/10);
     }
 
-    public static boolean digitsPair(int n){
-        if(n==0) {
-            return false;
-        }
-        int tocheck = n%10;
-        if (tocheck%2==0) {
+    public static boolean digitsPair(int n) {
+        if (n == 0) {
             return true;
+            if (n % 2 != 0)
+                return false;
+            else
+                return digitsPair(n / 10);
         }
-        else
-            return digitsPair(n/10);
     }
+
 // ex16
     public static int binaryToDecimal(int bin){
        double res = 0.0;
