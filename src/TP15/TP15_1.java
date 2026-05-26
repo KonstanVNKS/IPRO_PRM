@@ -134,14 +134,24 @@ public class TP15_1 {
         else
             return timesOf2(n/10);
     }
-
+// ex 13
     public static boolean digitsPair(int n) {
-        if (n == 0) {
+        if (n == 0)
             return true;
-            if (n % 2 != 0)
-                return false;
-            else
-                return digitsPair(n / 10);
+        if (n % 2 != 0)
+            return false;
+        else
+            return digitsPair(n / 10);
+
+    }
+
+//    ex14
+    public static void reverseDisplay(int val){
+        if(val<10)
+            System.out.print(val);
+        else{
+            System.out.print(val%10);
+            reverseDisplay(val/10);
         }
     }
 
@@ -178,6 +188,7 @@ public class TP15_1 {
 
     public static void main(String[] args) {
 //        int n = 10;
+        int test = 15478;
         var l = new Array<Integer>(1,2,3,4,15,5,6,7,8,9);
         var txt = " Je Suis KonStantinoS";
 //        SeqInt s = new SeqInt(1,2,2,3,3,5,5,5,5,5,8,4,9,7,7,7,7);
@@ -196,5 +207,6 @@ public class TP15_1 {
         System.out.println(binaryToDecimal(10000000));
         System.out.println(findMax(l,0));
         System.out.println(nbCapsInString(txt,0));
+        reverseDisplay(test);
     }
 }
